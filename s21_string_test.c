@@ -7,7 +7,9 @@ void s21_strcmp_test(const char *s1, const char *s2, int expected);
 void s21_strcpy_test(char *dest, const char *src, const char *expected);
 void s21_strcat_test(char *dest, const char *src, const char *expected);
 void s21_strchr_test(const char *s, int c, const char *expected);
-
+void s21_strstr_test(const char *haystack, const char *needle, const char *expected);
+void s21_memset_test(void *s, int c, size_t n, const char *expected);
+void s21_memcpy_test(void *dest, const void *src, size_t n, const char *expected);
 
 int main() {
     printf("=== STRLEN TESTS ===\n");
