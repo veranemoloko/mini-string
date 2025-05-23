@@ -7,6 +7,11 @@ void s21_strcmp_test(const char *s1, const char *s2, int expected);
 void s21_strcpy_test(char *dest, const char *src, const char *expected);
 void s21_strcat_test(char *dest, const char *src, const char *expected);
 void s21_strchr_test(const char *s, int c, const char *expected);
+void s21_strstr_test();
+void s21_memset_test();
+void s21_memcpy_test();
+
+
 
 int main() {
     printf("=== STRLEN TESTS ===\n");
@@ -107,4 +112,41 @@ void s21_strchr_test(const char *s, int c, const char *expected) {
     printf("Char: %c\n", c);
     printf("Result: %s\n", res ? res : "NULL");
     printf("Test: %s\n\n", res == expected ? "SUCCESS" : "FAIL");
+}
+
+void s21_memcpy_test() {
+    printf("=== MEMCPY TESTS ===\n");
+    
+    char src1[] = "Hello, World!";
+    char dest1[20] = {0};
+    s21_memcpy(dest1, src1, sizeof(src1));
+    printf("Test1: %s\n", strcmp(dest1, src1) == 0 ? "PASS" : "FAIL");
+    char buf2[] = "abcdefghij";
+    s21_memcpy(buf2 + 3, buf2, 4);
+    printf("Test2: %s\n", strcmp(buf2, "abcabcdhij") == 0 ? "PASS" : "FAIL");
+    printf("Test3: %s\n", s21_memcpy(NULL, "test", 5) == NULL ? "PASS" : "FAIL");
+}
+
+void s21_memset_test() {
+    printf("\n=== MEMSET TESTS ===\n");
+    
+    char buf1[10];
+    s21_memset(buf1, 'A', sizeof(buf1));
+    int test1 = 1;
+    for (size_t i = 0; i < sizeof(buf1); i++) {
+        if (buf1[i] != 'A') test1 = 0;
+    }
+    printf("Test1: %s\n", test1 ? "PASS" : "FAIL");
+    printf("Test2: %s\n", s21_memset(NULL, 'A', 10) == NULL ? "PASS" : "FAIL");
+}
+
+void s21_strstr_test() {
+    printf("\n=== STRSTR TESTS ===\n");
+    
+    const char *str = "The quick brown fox jumps over the lazy dog";
+    printf("Test1: %s\n", strstr(str, "fox") == s21_strstr(str, "fox") ? "PASS" : "FAIL");
+    printf("Test2: %s\n", s21_strstr(str, "cat") == NULL ? "PASS" : "FAIL");
+    printf("Test3: %s\n", s21_strstr(str, "") == str ? "PASS" : "FAIL");
+    printf("Test4: %s\n", s21_strstr("", "test") == NULL ? "PASS" : "FAIL");
+    printf("Test5: %s\n", s21_strstr(NULL, "test") == NULL ? "PASS" : "FAIL");
 }
